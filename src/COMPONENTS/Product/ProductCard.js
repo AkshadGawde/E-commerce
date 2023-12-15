@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import './ProductCard.css'
@@ -16,10 +17,10 @@ const ProductCard = ({ data }) => {
     let productdata = data
     if (cart) {
       // alert('1 item is already added to cart')
-      let itemincart = cart.find(item => item.productdata.ProductId === productdata.ProductId)
+      let itemincart = cart.find(item => item.productdata.Id === productdata.Id)
       if (itemincart) {
         cart = cart.map(item => {
-          if (item.productdata.ProductId === productdata.ProductId) {
+          if (item.productdata.Id === productdata.Id) {
             return {
               ...item,
               quantity: item.quantity + count
@@ -59,21 +60,21 @@ const ProductCard = ({ data }) => {
   return (
     <div className='product'>
       <div className='s1'>
-        <img src={data.ProductImage[0].image} alt={'no img'} />
+        <img src={data.image} alt={'no img'} />
       </div>
       <div className='s2'>
         <h3>
           $ {
-            data.ProductPrice - (data.ProductPrice * data.ProductDiscount / 100)
+           data.price 
           }
-          <span>${data.ProductPrice}</span>
+          <span>${data.price}</span>
         </h3>
         <p>{
-          data.ProductName
+          data.title
         }</p>
       </div>
       <div className='s3'>
-        <p>{data.counttype}</p>
+        <p>{data.count}</p>
       </div>
       {
         show ?
